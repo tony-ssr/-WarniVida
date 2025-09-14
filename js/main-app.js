@@ -122,6 +122,11 @@ const WarniVidaApp = {
             this.elements.mobileMenuToggle.addEventListener('click', () => this.toggleMobileSidebar());
         }
 
+        // Cerrar menú móvil al hacer clic en el overlay
+        if (this.elements.sidebarOverlay) {
+            this.elements.sidebarOverlay.addEventListener('click', () => this.closeMobileSidebar());
+        }
+
         // Navegación entre módulos
         this.elements.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -849,7 +854,7 @@ const WarniVidaApp = {
         
         // Redirigir al login después de un breve delay
         setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         }, 1500);
     },
 
