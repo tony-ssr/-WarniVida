@@ -1,0 +1,724 @@
+/*
+ * WarniVida - Dashboard Principal
+ * Estilos CSS para la página de inicio con diseño femenino elegante
+ * 
+ * Autora: Eliana Narvaez Diaz
+ * Desarrollador: Antony Salcedo
+ * Año: 2025
+ * 
+ * Paleta de colores: Tonos rosados y pasteles sin uso de negro
+ * Diseño: Moderno, elegante y orientado a público femenino
+ */
+
+/* ===== VARIABLES CSS PARA CONSISTENCIA DE COLORES ===== */
+:root {
+    /* Colores principales - Paleta rosada y pastel */
+    --primary-pink: #ff6b9d;
+    --secondary-pink: #ffa8cc;
+    --light-pink: #ffe0ec;
+    --pastel-purple: #c589e8;
+    --pastel-blue: #a8d8ea;
+    --pastel-green: #b8e6b8;
+    --cream-white: #fef7f0;
+    --soft-gray: #f5f0f5;
+    --text-dark: #5d4e75;
+    --text-medium: #8b7d95;
+    --text-light: #b8a9c9;
+    
+    /* Fuentes tipográficas */
+    --font-primary: 'Poppins', sans-serif;
+    --font-decorative: 'Dancing Script', cursive;
+    
+    /* Sombras suaves para elementos */
+    --shadow-soft: 0 4px 20px rgba(255, 107, 157, 0.15);
+    --shadow-medium: 0 8px 30px rgba(255, 107, 157, 0.2);
+    --shadow-strong: 0 12px 40px rgba(255, 107, 157, 0.25);
+    
+    /* Bordes redondeados */
+    --border-radius-small: 8px;
+    --border-radius-medium: 16px;
+    --border-radius-large: 24px;
+    
+    /* Transiciones suaves */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --transition-slow: 0.7s ease;
+}
+
+/* ===== RESET Y CONFIGURACIÓN BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: linear-gradient(135deg, var(--cream-white) 0%, var(--light-pink) 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== CONTENEDOR PRINCIPAL DEL DASHBOARD ===== */
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Patrón decorativo de fondo */
+.dashboard-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 168, 204, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(197, 137, 232, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(168, 216, 234, 0.1) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ===== HEADER PRINCIPAL ===== */
+.main-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Sección de branding */
+.brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--primary-pink);
+    filter: drop-shadow(2px 2px 4px rgba(255, 107, 157, 0.3));
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Animación del corazón */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.brand-title {
+    font-family: var(--font-decorative);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+    margin: 0;
+}
+
+.brand-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    font-weight: 400;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Información del proyecto */
+.project-info {
+    text-align: right;
+}
+
+.project-credits {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    line-height: 1.4;
+}
+
+.author-label,
+.developer-label,
+.year-label {
+    font-weight: 600;
+    color: var(--primary-pink);
+}
+
+/* ===== SECCIÓN PRINCIPAL DE BIENVENIDA ===== */
+.welcome-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.welcome-content {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Texto de bienvenida */
+.welcome-text {
+    padding-right: 2rem;
+}
+
+.welcome-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.welcome-description {
+    font-size: 1.2rem;
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+/* Características destacadas */
+.features-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-fast);
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-medium);
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: var(--primary-pink);
+    width: 2rem;
+    text-align: center;
+}
+
+.feature-item span {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* ===== OPCIONES DE ACCESO ===== */
+.access-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.option-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius-large);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efectos hover para las tarjetas */
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-strong);
+}
+
+.option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: var(--transition-medium);
+}
+
+.option-card:hover::before {
+    left: 100%;
+}
+
+/* Iconos de las tarjetas */
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.login-card .card-icon {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+}
+
+.register-card .card-icon {
+    background: linear-gradient(135deg, var(--pastel-purple), var(--secondary-pink));
+}
+
+.guest-card .card-icon {
+    background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+}
+
+/* Títulos y descripciones de las tarjetas */
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Botones de acción */
+.action-btn {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-medium);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Variaciones de colores para botones */
+.register-btn {
+    background: linear-gradient(135deg, var(--pastel-purple), var(--secondary-pink));
+}
+
+.guest-btn {
+    background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    box-shadow: 0 -4px 20px rgba(255, 107, 157, 0.1);
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--primary-pink);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-section p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-section i {
+    color: var(--primary-pink);
+    width: 1rem;
+}
+
+/* ===== MODALES ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(93, 78, 117, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn var(--transition-fast);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--cream-white);
+    border-radius: var(--border-radius-large);
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-strong);
+    animation: slideIn var(--transition-medium);
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-modal {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* ===== FORMULARIOS ===== */
+.auth-form {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--light-pink);
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-medium);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-soft);
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.forgot-password {
+    color: var(--primary-pink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: var(--secondary-pink);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .welcome-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .welcome-text {
+        padding-right: 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-info {
+        text-align: center;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-title {
+        font-size: 2.2rem;
+    }
+    
+    .welcome-description {
+        font-size: 1.1rem;
+    }
+    
+    .option-card {
+        padding: 2rem;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .features-highlight {
+        gap: 0.5rem;
+    }
+    
+    .feature-item {
+        padding: 0.8rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .auth-form {
+        padding: 1.5rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .main-header,
+    .welcome-section,
+    .main-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .brand-title {
+        font-size: 2rem;
+    }
+    
+    .logo-icon {
+        font-size: 2rem;
+    }
+    
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+    
+    .option-card {
+        padding: 1.5rem;
+    }
+    
+    .action-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* ===== ANIMACIONES ADICIONALES ===== */
+
+/* Animación de entrada para las tarjetas */
+.option-card {
+    animation: slideUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.option-card:nth-child(1) { animation-delay: 0.1s; }
+.option-card:nth-child(2) { animation-delay: 0.2s; }
+.option-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de entrada para características */
+.feature-item {
+    animation: slideRight 0.6s ease forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.2s; }
+.feature-item:nth-child(2) { animation-delay: 0.4s; }
+.feature-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Efectos de hover mejorados */
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-medium);
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+/* Estados de carga para botones */
+.action-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.action-btn.loading::after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

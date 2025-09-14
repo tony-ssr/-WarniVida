@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WarniVida - Tu Espacio de Salud</title>
+    
+    <!-- Fuentes elegantes para diseño femenino -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos de la aplicación principal -->
+    <link rel="stylesheet" href="../css/main-app.css">
+    <link rel="stylesheet" href="../css/modules.css">
+    
+    <!-- Meta información del proyecto -->
+    <meta name="description" content="WarniVida - Plataforma integral de salud reproductiva con seguimiento personalizado">
+    <meta name="author" content="Antony Salcedo">
+    <meta name="keywords" content="salud reproductiva, planificación familiar, seguimiento médico, comorbilidades">
+</head>
+<body>
+    <!-- Contenedor principal de la aplicación -->
+    <div class="app-container">
+        
+        <!-- Sidebar de navegación -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <i class="fas fa-heart-pulse logo-icon"></i>
+                    <h2 class="app-title">WarniVida</h2>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Información de la usuaria -->
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <h3 class="user-name" id="userName">Cargando...</h3>
+                    <p class="user-status" id="userStatus">Usuaria activa</p>
+                </div>
+            </div>
+            
+            <!-- Menú de navegación principal -->
+            <nav class="main-navigation">
+                <ul class="nav-menu">
+                    <!-- Módulo 1: Dashboard -->
+                    <li class="nav-item active">
+                        <a href="#dashboard" class="nav-link" data-module="dashboard">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 1: Registro y Perfil -->
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link" data-module="profile">
+                            <i class="fas fa-user-edit"></i>
+                            <span>Mi Perfil</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 2: Educación en Salud -->
+                    <li class="nav-item">
+                        <a href="#education" class="nav-link" data-module="education">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Educación</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 3: Consejería y Captación -->
+                    <li class="nav-item">
+                        <a href="#counseling" class="nav-link" data-module="counseling">
+                            <i class="fas fa-comments"></i>
+                            <span>Consejería</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 4: Planificación y Recordatorios -->
+                    <li class="nav-item">
+                        <a href="#planning" class="nav-link" data-module="planning">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Planificación</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 5: Seguimiento Personalizado -->
+                    <li class="nav-item">
+                        <a href="#tracking" class="nav-link" data-module="tracking">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Seguimiento</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Módulo 6: Comunicación -->
+                    <li class="nav-item">
+                        <a href="#communication" class="nav-link" data-module="communication">
+                            <i class="fas fa-message"></i>
+                            <span>Comunicación</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Alertas de emergencia -->
+                    <li class="nav-item emergency">
+                        <a href="#emergency" class="nav-link" data-module="emergency">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Alertas</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de cerrar sesión -->
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header superior -->
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+                
+                <div class="header-right">
+                    <!-- Notificaciones -->
+                    <div class="notification-bell">
+                        <button class="notification-btn" id="notificationBtn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h4>Notificaciones</h4>
+                                <button class="mark-all-read">Marcar todas como leídas</button>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <!-- Las notificaciones se cargan dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Información rápida de salud -->
+                    <div class="health-status">
+                        <div class="status-indicator" id="healthStatus">
+                            <i class="fas fa-heart"></i>
+                            <span>Estado: Bueno</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Área de contenido dinámico -->
+            <div class="content-area" id="contentArea">
+                
+                <!-- MÓDULO DASHBOARD (Vista por defecto) -->
+                <section class="module-content active" id="dashboard-module">
+                    <div class="dashboard-grid">
+                        
+                        <!-- Tarjeta de bienvenida personalizada -->
+                        <div class="dashboard-card welcome-card">
+                            <div class="card-header">
+                                <h3>¡Hola, <span id="welcomeUserName">Usuaria</span>!</h3>
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="card-content">
+                                <p>Es un placer tenerte de vuelta. Aquí tienes un resumen de tu cuidado de salud.</p>
+                                <div class="quick-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <span>Próxima cita: <strong id="nextAppointment">15 Nov</strong></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-pills"></i>
+                                        <span>Recordatorio: <strong id="nextReminder">Hoy 8:00 PM</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tarjeta de estado de salud -->
+                        <div class="dashboard-card health-card">
+                            <div class="card-header">
+                                <h3>Estado de Salud</h3>
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="health-indicators">
+                                    <div class="indicator">
+                                        <div class="indicator-icon good">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <div class="indicator-info">
+                                            <h4>Planificación</h4>
+                                            <p>Al día</p>
+                                        </div>
+                                    </div>
+                                    <div class="indicator">
+                                        <div class="indicator-icon warning">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                        </div>
+                                        <div class="indicator-info">
+                                            <h4>Comorbilidades</h4>
+                                            <p>Requiere atención</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tarjeta de acciones rápidas -->
+                        <div class="dashboard-card actions-card">
+                            <div class="card-header">
+                                <h3>Acciones Rápidas</h3>
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn" onclick="navigateToModule('counseling')">
+                                        <i class="fas fa-calendar-plus"></i>
+                                        <span>Agendar Cita</span>
+                                    </button>
+                                    <button class="quick-action-btn" onclick="navigateToModule('communication')">
+                                        <i class="fas fa-comments"></i>
+                                        <span>Chat Médico</span>
+                                    </button>
+                                    <button class="quick-action-btn" onclick="navigateToModule('emergency')">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span>Reportar Síntoma</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tarjeta de progreso -->
+                        <div class="dashboard-card progress-card">
+                            <div class="card-header">
+                                <h3>Tu Progreso</h3>
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span>Adherencia al tratamiento</span>
+                                        <span class="progress-percentage">85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span>Citas completadas</span>
+                                        <span class="progress-percentage">92%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tarjeta de educación destacada -->
+                        <div class="dashboard-card education-card">
+                            <div class="card-header">
+                                <h3>Contenido Recomendado</h3>
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="education-item">
+                                    <div class="education-icon">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                    <div class="education-info">
+                                        <h4>Métodos anticonceptivos seguros</h4>
+                                        <p>Para mujeres con hipertensión</p>
+                                        <button class="learn-more-btn" onclick="navigateToModule('education')">
+                                            Ver contenido
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tarjeta de recordatorios -->
+                        <div class="dashboard-card reminders-card">
+                            <div class="card-header">
+                                <h3>Recordatorios de Hoy</h3>
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="card-content">
+                                <div class="reminder-list" id="todayReminders">
+                                    <div class="reminder-item">
+                                        <div class="reminder-time">8:00 PM</div>
+                                        <div class="reminder-text">Tomar pastilla anticonceptiva</div>
+                                        <button class="reminder-check" onclick="markReminderComplete(this)">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                    <div class="reminder-item">
+                                        <div class="reminder-time">9:00 PM</div>
+                                        <div class="reminder-text">Medir presión arterial</div>
+                                        <button class="reminder-check" onclick="markReminderComplete(this)">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- MÓDULO PERFIL -->
+                <section class="module-content" id="profile-module">
+                    <div class="module-header">
+                        <h2>Mi Perfil de Salud</h2>
+                        <p>Mantén tu información actualizada para recibir el mejor cuidado personalizado</p>
+                    </div>
+                    
+                    <div class="profile-container">
+                        <!-- Formulario de datos personales -->
+                        <div class="profile-section">
+                            <h3>Datos Personales</h3>
+                            <form id="personalDataForm" class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="fullName">Nombre Completo</label>
+                                        <input type="text" id="fullName" name="fullName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="document">Documento de Identidad</label>
+                                        <input type="text" id="document" name="document" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="age">Edad</label>
+                                        <input type="number" id="age" name="age" min="18" max="100" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Teléfono</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="address">Dirección</label>
+                                    <textarea id="address" name="address" rows="3" required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eps">EPS</label>
+                                    <select id="eps" name="eps" required>
+                                        <option value="">Selecciona tu EPS</option>
+                                        <option value="compensar">Compensar EPS</option>
+                                        <option value="nueva-eps">Nueva EPS</option>
+                                        <option value="famisanar">Famisanar EPS</option>
+                                        <option value="sanitas">Sanitas EPS</option>
+                                        <option value="sura">Sura EPS</option>
+                                        <option value="salud-total">Salud Total EPS</option>
+                                        <option value="coomeva">Coomeva EPS</option>
+                                        <option value="aliansalud">Aliansalud EPS</option>
+                                        <option value="medimas">Medimás EPS</option>
+                                        <option value="capital-salud">Capital Salud EPS</option>
+                                        <option value="otra">Otra</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Sección de comorbilidades -->
+                        <div class="profile-section">
+                            <h3>Condiciones de Salud</h3>
+                            <div class="comorbidities-section">
+                                <p class="section-description">Selecciona las condiciones de salud que tienes actualmente:</p>
+                                
+                                <div class="comorbidity-options">
+                                    <label class="comorbidity-item">
+                                        <input type="checkbox" name="comorbidities" value="hipertension">
+                                        <div class="checkbox-custom"></div>
+                                        <div class="comorbidity-info">
+                                            <h4>Hipertensión Arterial</h4>
+                                            <p>Presión arterial elevada</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="comorbidity-item">
+                                        <input type="checkbox" name="comorbidities" value="diabetes">
+                                        <div class="checkbox-custom"></div>
+                                        <div class="comorbidity-info">
+                                            <h4>Diabetes Mellitus</h4>
+                                            <p>Niveles elevados de glucosa en sangre</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="comorbidity-item">
+                                        <input type="checkbox" name="comorbidities" value="obesidad">
+                                        <div class="checkbox-custom"></div>
+                                        <div class="comorbidity-info">
+                                            <h4>Obesidad</h4>
+                                            <p>Índice de masa corporal elevado</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="comorbidity-item">
+                                        <input type="checkbox" name="comorbidities" value="cardiovascular">
+                                        <div class="checkbox-custom"></div>
+                                        <div class="comorbidity-info">
+                                            <h4>Enfermedad Cardiovascular</h4>
+                                            <p>Problemas del corazón o vasos sanguíneos</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="otherConditions">Otras condiciones</label>
+                                    <textarea id="otherConditions" name="otherConditions" rows="3" placeholder="Describe cualquier otra condición de salud relevante..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sección de planificación familiar -->
+                        <div class="profile-section">
+                            <h3>Estado de Planificación Familiar</h3>
+                            <div class="planning-status">
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="planningStatus" value="using">
+                                        <div class="radio-custom"></div>
+                                        <div class="radio-info">
+                                            <h4>Actualmente uso un método anticonceptivo</h4>
+                                            <p>Estoy utilizando algún método de planificación familiar</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="radio-item">
+                                        <input type="radio" name="planningStatus" value="interested">
+                                        <div class="radio-custom"></div>
+                                        <div class="radio-info">
+                                            <h4>No uso, pero quiero recibir información</h4>
+                                            <p>Me interesa conocer opciones de planificación familiar</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="radio-item">
+                                        <input type="radio" name="planningStatus" value="not-interested">
+                                        <div class="radio-custom"></div>
+                                        <div class="radio-info">
+                                            <h4>No deseo planificar por el momento</h4>
+                                            <p>Actualmente no estoy interesada en planificación familiar</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Botón de guardar -->
+                        <div class="profile-actions">
+                            <button type="button" class="save-profile-btn" onclick="saveProfile()">
+                                <i class="fas fa-save"></i>
+                                Guardar Información
+                            </button>
+                            <p class="privacy-note">
+                                <i class="fas fa-shield-alt"></i>
+                                Tu información será enviada de forma segura a tu EPS y será tratada conforme a la Ley de Habeas Data en Colombia.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Los demás módulos se cargarán dinámicamente -->
+                <section class="module-content" id="education-module">
+                    <div class="education-container">
+                        <div class="education-header">
+                            <h2>Educación en Salud Reproductiva</h2>
+                            <p>Contenido educativo personalizado según tus comorbilidades y necesidades</p>
+                        </div>
+                        
+                        <div class="education-grid">
+                            <!-- Contenido para Obesidad -->
+                            <div class="education-card featured">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-weight"></i>
+                                    </div>
+                                    <h3>Obesidad y Planificación Familiar</h3>
+                                    <span class="priority-badge">Prioritario</span>
+                                </div>
+                                <div class="card-content">
+                                    <p>Información especializada sobre métodos anticonceptivos seguros para mujeres con obesidad.</p>
+                                    <ul class="topic-list">
+                                        <li><i class="fas fa-check"></i> Métodos hormonales recomendados</li>
+                                        <li><i class="fas fa-check"></i> Riesgos y beneficios específicos</li>
+                                        <li><i class="fas fa-check"></i> Seguimiento médico especializado</li>
+                                        <li><i class="fas fa-check"></i> Estilo de vida saludable</li>
+                                    </ul>
+                                    <button class="learn-btn" onclick="openEducationModal('obesidad')">
+                                        <i class="fas fa-play"></i> Ver contenido
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Métodos Anticonceptivos -->
+                            <div class="education-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-pills"></i>
+                                    </div>
+                                    <h3>Métodos Anticonceptivos</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Guía completa sobre todos los métodos disponibles y su efectividad.</p>
+                                    <button class="learn-btn" onclick="openEducationModal('metodos')">
+                                        <i class="fas fa-book-open"></i> Explorar
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Salud Sexual -->
+                            <div class="education-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h3>Salud Sexual</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Información sobre salud sexual, prevención de ITS y bienestar íntimo.</p>
+                                    <button class="learn-btn" onclick="openEducationModal('salud-sexual')">
+                                        <i class="fas fa-info-circle"></i> Aprender
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Nutrición y Ejercicio -->
+                            <div class="education-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-apple-alt"></i>
+                                    </div>
+                                    <h3>Nutrición y Ejercicio</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Consejos nutricionales y rutinas de ejercicio adaptadas a tu condición.</p>
+                                    <button class="learn-btn" onclick="openEducationModal('nutricion')">
+                                        <i class="fas fa-dumbbell"></i> Ver guías
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Progreso de aprendizaje -->
+                        <div class="learning-progress">
+                            <h3>Tu Progreso de Aprendizaje</h3>
+                            <div class="progress-items">
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Introducción a la planificación familiar</span>
+                                    <div class="progress-date">Completado hace 2 días</div>
+                                </div>
+                                <div class="progress-item in-progress">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Métodos anticonceptivos para obesidad</span>
+                                    <div class="progress-date">En progreso - 60%</div>
+                                </div>
+                                <div class="progress-item pending">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Nutrición y control de peso</span>
+                                    <div class="progress-date">Pendiente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="module-content" id="counseling-module">
+                    <div class="counseling-container">
+                        <div class="counseling-header">
+                            <h2>Consejería y Captación</h2>
+                            <p>Servicios de consejería personalizada y apoyo profesional</p>
+                        </div>
+                        
+                        <div class="counseling-grid">
+                            <!-- Agendar Cita -->
+                            <div class="counseling-card priority">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </div>
+                                    <h3>Agendar Cita Médica</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Programa tu cita con un profesional de salud especializado en planificación familiar.</p>
+                                    <div class="appointment-info">
+                                        <div class="info-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Disponibilidad: Lun-Vie 8:00-17:00</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <i class="fas fa-user-md"></i>
+                                            <span>Especialistas disponibles</span>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn primary" onclick="openAppointmentModal()">
+                                        <i class="fas fa-calendar-check"></i> Agendar Ahora
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Consulta Virtual -->
+                            <div class="counseling-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                    <h3>Consulta Virtual</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Consulta inmediata por videollamada con profesionales de salud.</p>
+                                    <div class="status-indicator online">
+                                        <i class="fas fa-circle"></i>
+                                        <span>2 especialistas en línea</span>
+                                    </div>
+                                    <button class="action-btn secondary" onclick="startVirtualConsultation()">
+                                        <i class="fas fa-play"></i> Iniciar Consulta
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Chat de Apoyo -->
+                            <div class="counseling-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h3>Chat de Apoyo</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Conversación en tiempo real con consejeros especializados.</p>
+                                    <div class="chat-preview">
+                                        <div class="message-preview">
+                                            <strong>Consejera María:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?
+                                        </div>
+                                    </div>
+                                    <button class="action-btn tertiary" onclick="openChatSupport()">
+                                        <i class="fas fa-comment-dots"></i> Abrir Chat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Historial de Citas -->
+                        <div class="appointment-history">
+                            <h3>Historial de Citas</h3>
+                            <div class="history-list">
+                                <div class="history-item completed">
+                                    <div class="appointment-date">
+                                        <div class="date-number">15</div>
+                                        <div class="date-month">Oct</div>
+                                    </div>
+                                    <div class="appointment-details">
+                                        <h4>Consulta de Planificación Familiar</h4>
+                                        <p>Dr. Ana García - Ginecología</p>
+                                        <div class="appointment-status completed">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Completada</span>
+                                        </div>
+                                    </div>
+                                    <button class="view-details-btn" onclick="viewAppointmentDetails(1)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="history-item upcoming">
+                                    <div class="appointment-date">
+                                        <div class="date-number">22</div>
+                                        <div class="date-month">Nov</div>
+                                    </div>
+                                    <div class="appointment-details">
+                                        <h4>Seguimiento de Tratamiento</h4>
+                                        <p>Dr. Carlos Mendez - Medicina Interna</p>
+                                        <div class="appointment-status upcoming">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Próxima - 10:00 AM</span>
+                                        </div>
+                                    </div>
+                                    <button class="reschedule-btn" onclick="rescheduleAppointment(2)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recursos de Apoyo -->
+                        <div class="support-resources">
+                            <h3>Recursos de Apoyo</h3>
+                            <div class="resources-grid">
+                                <div class="resource-item">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <h4>Línea de Emergencia</h4>
+                                    <p>123-456-7890</p>
+                                    <span class="availability">24/7 disponible</span>
+                                </div>
+                                <div class="resource-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <h4>Correo de Consultas</h4>
+                                    <p>consultas@warnivida.com</p>
+                                    <span class="availability">Respuesta en 24h</span>
+                                </div>
+                                <div class="resource-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <h4>Centros de Salud</h4>
+                                    <p>Encuentra el más cercano</p>
+                                    <button class="find-center-btn">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="module-content" id="planning-module">
+                    <div class="planning-container">
+                        <div class="planning-header">
+                            <h2>Planificación Familiar</h2>
+                            <p>Gestiona tu plan de salud reproductiva personalizado</p>
+                        </div>
+                        
+                        <div class="planning-grid">
+                            <!-- Mi Plan Actual -->
+                            <div class="planning-card current-plan">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h3>Mi Plan Actual</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="plan-status active">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Plan Activo</span>
+                                    </div>
+                                    <div class="plan-details">
+                                        <h4>Anticonceptivo Oral Combinado</h4>
+                                        <p>Iniciado: 15 de Septiembre, 2024</p>
+                                        <div class="next-action">
+                                            <strong>Próxima acción:</strong> Renovar receta (22 Nov)
+                                        </div>
+                                    </div>
+                                    <button class="action-btn primary" onclick="viewPlanDetails()">
+                                        <i class="fas fa-eye"></i> Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Opciones de Planificación -->
+                            <div class="planning-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-list-alt"></i>
+                                    </div>
+                                    <h3>Explorar Opciones</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Descubre diferentes métodos anticonceptivos que se adapten a tu estilo de vida.</p>
+                                    <div class="options-list">
+                                        <div class="option-item">
+                                            <i class="fas fa-pills"></i>
+                                            <span>Anticonceptivos Orales</span>
+                                        </div>
+                                        <div class="option-item">
+                                            <i class="fas fa-syringe"></i>
+                                            <span>Inyecciones</span>
+                                        </div>
+                                        <div class="option-item">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>Dispositivos Intrauterinos</span>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn secondary" onclick="exploreOptions()">
+                                        <i class="fas fa-search"></i> Explorar
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Consulta Personalizada -->
+                            <div class="planning-card">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3>Consulta Personalizada</h3>
+                                </div>
+                                <div class="card-content">
+                                    <p>Habla con un especialista para crear un plan personalizado.</p>
+                                    <div class="consultation-info">
+                                        <div class="info-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Duración: 45 minutos</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <i class="fas fa-video"></i>
+                                            <span>Presencial o virtual</span>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn tertiary" onclick="scheduleConsultation()">
+                                        <i class="fas fa-calendar-plus"></i> Agendar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Historial de Planes -->
+                        <div class="plan-history">
+                            <h3>Historial de Planes</h3>
+                            <div class="history-timeline">
+                                <div class="timeline-item active">
+                                    <div class="timeline-date">
+                                        <div class="date-circle active"></div>
+                                        <span>Sep 2024</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Anticonceptivo Oral Combinado</h4>
+                                        <p>Plan actual - Funcionando bien</p>
+                                        <span class="status-badge active">Activo</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <div class="date-circle"></div>
+                                        <span>Mar 2024</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Inyección Trimestral</h4>
+                                        <p>Cambio por efectos secundarios</p>
+                                        <span class="status-badge completed">Completado</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-date">
+                                        <div class="date-circle"></div>
+                                        <span>Ene 2024</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Consulta Inicial</h4>
+                                        <p>Evaluación y recomendaciones</p>
+                                        <span class="status-badge completed">Completado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recordatorios -->
+                        <div class="reminders-section">
+                            <h3>Recordatorios Activos</h3>
+                            <div class="reminders-grid">
+                                <div class="reminder-card urgent">
+                                    <div class="reminder-icon">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <div class="reminder-content">
+                                        <h4>Tomar pastilla</h4>
+                                        <p>Todos los días a las 8:00 PM</p>
+                                        <span class="next-reminder">Próximo: Hoy 8:00 PM</span>
+                                    </div>
+                                    <button class="reminder-toggle active" onclick="toggleReminder(1)">
+                                        <i class="fas fa-toggle-on"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="reminder-card">
+                                    <div class="reminder-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="reminder-content">
+                                        <h4>Cita de seguimiento</h4>
+                                        <p>Cada 3 meses</p>
+                                        <span class="next-reminder">Próxima: 22 Nov 2024</span>
+                                    </div>
+                                    <button class="reminder-toggle active" onclick="toggleReminder(2)">
+                                        <i class="fas fa-toggle-on"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="module-content" id="tracking-module">
+                    <div class="tracking-container">
+                        <div class="tracking-header">
+                            <h2>Seguimiento de Salud</h2>
+                            <p>Monitorea tu progreso y mantén un registro completo de tu salud</p>
+                        </div>
+                        
+                        <div class="tracking-grid">
+                            <!-- Registro Diario -->
+                            <div class="tracking-card daily-log">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                    <h3>Registro Diario</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="today-status">
+                                        <div class="status-item completed">
+                                            <i class="fas fa-pills"></i>
+                                            <span>Medicamento tomado</span>
+                                            <div class="time">8:00 PM</div>
+                                        </div>
+                                        <div class="status-item pending">
+                                            <i class="fas fa-notes-medical"></i>
+                                            <span>Síntomas del día</span>
+                                            <div class="time">Pendiente</div>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn primary" onclick="openDailyLog()">
+                                        <i class="fas fa-plus"></i> Registrar Hoy
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Gráficos de Progreso -->
+                            <div class="tracking-card charts">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3>Progreso Mensual</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="progress-stats">
+                                        <div class="stat-item">
+                                            <div class="stat-number">95%</div>
+                                            <div class="stat-label">Adherencia</div>
+                                        </div>
+                                        <div class="stat-item">
+                                            <div class="stat-number">28</div>
+                                            <div class="stat-label">Días registrados</div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-chart">
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 95%"></div>
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                        <div class="chart-bar" style="height: 100%"></div>
+                                        <div class="chart-bar" style="height: 85%"></div>
+                                    </div>
+                                    <button class="action-btn secondary" onclick="viewDetailedCharts()">
+                                        <i class="fas fa-chart-bar"></i> Ver Gráficos
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Síntomas y Efectos -->
+                            <div class="tracking-card symptoms">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <h3>Síntomas Recientes</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="symptoms-list">
+                                        <div class="symptom-item mild">
+                                            <div class="symptom-info">
+                                                <span class="symptom-name">Dolor de cabeza leve</span>
+                                                <span class="symptom-date">Ayer</span>
+                                            </div>
+                                            <div class="severity mild">Leve</div>
+                                        </div>
+                                        <div class="symptom-item none">
+                                            <div class="symptom-info">
+                                                <span class="symptom-name">Sin síntomas</span>
+                                                <span class="symptom-date">Últimos 5 días</span>
+                                            </div>
+                                            <div class="severity none">Normal</div>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn tertiary" onclick="reportSymptom()">
+                                        <i class="fas fa-plus-circle"></i> Reportar Síntoma
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Historial de Registros -->
+                        <div class="tracking-history">
+                            <h3>Historial de Registros</h3>
+                            <div class="history-calendar">
+                                <div class="calendar-header">
+                                    <button class="nav-btn" onclick="previousMonth()">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <h4>Noviembre 2024</h4>
+                                    <button class="nav-btn" onclick="nextMonth()">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day header">L</div>
+                                    <div class="calendar-day header">M</div>
+                                    <div class="calendar-day header">X</div>
+                                    <div class="calendar-day header">J</div>
+                                    <div class="calendar-day header">V</div>
+                                    <div class="calendar-day header">S</div>
+                                    <div class="calendar-day header">D</div>
+                                    
+                                    <div class="calendar-day"></div>
+                                    <div class="calendar-day"></div>
+                                    <div class="calendar-day"></div>
+                                    <div class="calendar-day"></div>
+                                    <div class="calendar-day completed">1</div>
+                                    <div class="calendar-day completed">2</div>
+                                    <div class="calendar-day completed">3</div>
+                                    <div class="calendar-day completed">4</div>
+                                    <div class="calendar-day completed">5</div>
+                                    <div class="calendar-day completed">6</div>
+                                    <div class="calendar-day completed">7</div>
+                                    <div class="calendar-day completed">8</div>
+                                    <div class="calendar-day completed">9</div>
+                                    <div class="calendar-day completed">10</div>
+                                    <div class="calendar-day completed">11</div>
+                                    <div class="calendar-day completed">12</div>
+                                    <div class="calendar-day completed">13</div>
+                                    <div class="calendar-day today">14</div>
+                                    <div class="calendar-day">15</div>
+                                    <div class="calendar-day">16</div>
+                                    <div class="calendar-day">17</div>
+                                    <div class="calendar-day">18</div>
+                                    <div class="calendar-day">19</div>
+                                    <div class="calendar-day">20</div>
+                                    <div class="calendar-day">21</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Metas y Objetivos -->
+                        <div class="goals-section">
+                            <h3>Metas de Salud</h3>
+                            <div class="goals-grid">
+                                <div class="goal-card">
+                                    <div class="goal-icon">
+                                        <i class="fas fa-target"></i>
+                                    </div>
+                                    <div class="goal-content">
+                                        <h4>Adherencia al Tratamiento</h4>
+                                        <div class="goal-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 95%"></div>
+                                            </div>
+                                            <span class="progress-text">95% / 90%</span>
+                                        </div>
+                                        <p class="goal-status achieved">¡Meta alcanzada!</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="goal-card">
+                                    <div class="goal-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="goal-content">
+                                        <h4>Registros Diarios</h4>
+                                        <div class="goal-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 80%"></div>
+                                            </div>
+                                            <span class="progress-text">24 / 30 días</span>
+                                        </div>
+                                        <p class="goal-status in-progress">En progreso</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="module-content" id="communication-module">
+                    <div class="communication-container">
+                        <div class="communication-header">
+                            <h2>Comunicación y Soporte</h2>
+                            <p>Mantente conectada con tu equipo de salud y la comunidad</p>
+                        </div>
+                        
+                        <div class="communication-grid">
+                            <!-- Mensajes Recientes -->
+                            <div class="communication-card messages">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <h3>Mensajes</h3>
+                                    <div class="notification-badge">2</div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="message-list">
+                                        <div class="message-item unread">
+                                            <div class="message-avatar">
+                                                <i class="fas fa-user-md"></i>
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-header">
+                                                    <span class="sender">Dr. Ana García</span>
+                                                    <span class="time">Hace 2h</span>
+                                                </div>
+                                                <p class="message-text">Resultados de laboratorio listos. Todo normal.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="message-item unread">
+                                            <div class="message-avatar">
+                                                <i class="fas fa-hospital"></i>
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-header">
+                                                    <span class="sender">Centro de Salud</span>
+                                                    <span class="time">Ayer</span>
+                                                </div>
+                                                <p class="message-text">Recordatorio: Cita programada para el 22 de noviembre.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn primary" onclick="openMessages()">
+                                        <i class="fas fa-comments"></i> Ver Todos
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Chat en Vivo -->
+                            <div class="communication-card live-chat">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-comment-dots"></i>
+                                    </div>
+                                    <h3>Chat en Vivo</h3>
+                                    <div class="status-indicator online">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="chat-status">
+                                        <div class="available-agents">
+                                            <i class="fas fa-users"></i>
+                                            <span>3 consejeros disponibles</span>
+                                        </div>
+                                        <div class="response-time">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Tiempo de respuesta: < 2 min</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-preview">
+                                        <div class="chat-bubble">
+                                            <strong>Consejera María:</strong> ¡Hola! ¿En qué puedo ayudarte hoy?
+                                        </div>
+                                    </div>
+                                    <button class="action-btn secondary" onclick="startLiveChat()">
+                                        <i class="fas fa-play"></i> Iniciar Chat
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Foro Comunitario -->
+                            <div class="communication-card forum">
+                                <div class="card-header">
+                                    <div class="card-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3>Foro Comunitario</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="forum-stats">
+                                        <div class="stat">
+                                            <span class="number">1,247</span>
+                                            <span class="label">Miembros</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="number">89</span>
+                                            <span class="label">Temas activos</span>
+                                        </div>
+                                    </div>
+                                    <div class="recent-topics">
+                                        <div class="topic-item">
+                                            <i class="fas fa-comment"></i>
+                                            <span>Experiencias con anticonceptivos orales</span>
+                                            <div class="topic-meta">12 respuestas</div>
+                                        </div>
+                                        <div class="topic-item">
+                                            <i class="fas fa-heart"></i>
+                                            <span>Consejos para el bienestar emocional</span>
+                                            <div class="topic-meta">8 respuestas</div>
+                                        </div>
+                                    </div>
+                                    <button class="action-btn tertiary" onclick="openForum()">
+                                        <i class="fas fa-external-link-alt"></i> Ir al Foro
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contactos de Emergencia -->
+                        <div class="emergency-contacts">
+                            <h3>Contactos de Emergencia</h3>
+                            <div class="contacts-grid">
+                                <div class="contact-card urgent">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Línea de Emergencia</h4>
+                                        <p class="phone-number">123-456-7890</p>
+                                        <span class="availability">24/7 disponible</span>
+                                    </div>
+                                    <button class="call-btn" onclick="callEmergency()">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="contact-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Dr. Ana García</h4>
+                                        <p class="phone-number">123-456-7891</p>
+                                        <span class="availability">Lun-Vie 8:00-17:00</span>
+                                    </div>
+                                    <button class="call-btn" onclick="callDoctor()">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="contact-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-hospital"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Centro de Salud</h4>
+                                        <p class="phone-number">123-456-7892</p>
+                                        <span class="availability">Lun-Dom 6:00-22:00</span>
+                                    </div>
+                                    <button class="call-btn" onclick="callCenter()">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notificaciones y Preferencias -->
+                        <div class="notification-settings">
+                            <h3>Configuración de Notificaciones</h3>
+                            <div class="settings-grid">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Recordatorios de Medicamentos</h4>
+                                        <p>Recibe notificaciones para tomar tu medicamento</p>
+                                    </div>
+                                    <div class="setting-toggle">
+                                        <input type="checkbox" id="med-reminders" checked>
+                                        <label for="med-reminders" class="toggle-switch"></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Mensajes del Médico</h4>
+                                        <p>Notificaciones de mensajes de tu equipo médico</p>
+                                    </div>
+                                    <div class="setting-toggle">
+                                        <input type="checkbox" id="doctor-messages" checked>
+                                        <label for="doctor-messages" class="toggle-switch"></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Recordatorios de Citas</h4>
+                                        <p>Alertas sobre próximas citas médicas</p>
+                                    </div>
+                                    <div class="setting-toggle">
+                                        <input type="checkbox" id="appointment-reminders" checked>
+                                        <label for="appointment-reminders" class="toggle-switch"></label>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Actualizaciones del Foro</h4>
+                                        <p>Notificaciones sobre nuevos temas y respuestas</p>
+                                    </div>
+                                    <div class="setting-toggle">
+                                        <input type="checkbox" id="forum-updates">
+                                        <label for="forum-updates" class="toggle-switch"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="module-content" id="emergency-module">
+                    <div class="emergency-container">
+                        <div class="emergency-header">
+                            <h2>Alertas y Emergencias</h2>
+                            <p>Sistema de alertas y respuesta rápida para tu seguridad</p>
+                        </div>
+                        
+                        <!-- Botón de Emergencia Principal -->
+                        <div class="emergency-button-section">
+                            <button class="emergency-btn" onclick="triggerEmergency()">
+                                <div class="emergency-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="emergency-text">
+                                    <h3>EMERGENCIA</h3>
+                                    <p>Presiona para activar alerta</p>
+                                </div>
+                            </button>
+                            <div class="emergency-info">
+                                <p><i class="fas fa-info-circle"></i> Este botón enviará tu ubicación y alertará a tus contactos de emergencia</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Alertas Activas -->
+                        <div class="alerts-section">
+                            <h3>Alertas Activas</h3>
+                            <div class="alerts-grid">
+                                <div class="alert-card high-priority">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-pills"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Medicamento Pendiente</h4>
+                                        <p>Anticonceptivo oral - Hace 2 horas</p>
+                                        <div class="alert-time">Vence en: 4 horas</div>
+                                    </div>
+                                    <div class="alert-actions">
+                                        <button class="btn-small primary" onclick="markTaken()">Tomado</button>
+                                        <button class="btn-small secondary" onclick="snoozeAlert()">Posponer</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert-card medium-priority">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Cita Médica Próxima</h4>
+                                        <p>Control ginecológico - Dr. Ana García</p>
+                                        <div class="alert-time">Mañana a las 10:00 AM</div>
+                                    </div>
+                                    <div class="alert-actions">
+                                        <button class="btn-small primary" onclick="confirmAppointment()">Confirmar</button>
+                                        <button class="btn-small tertiary" onclick="rescheduleAppointment()">Reagendar</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert-card low-priority">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="alert-content">
+                                        <h4>Registro de Síntomas</h4>
+                                        <p>No has registrado síntomas hoy</p>
+                                        <div class="alert-time">Recordatorio diario</div>
+                                    </div>
+                                    <div class="alert-actions">
+                                        <button class="btn-small primary" onclick="logSymptoms()">Registrar</button>
+                                        <button class="btn-small secondary" onclick="dismissAlert()">Omitir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contactos de Emergencia Rápidos -->
+                        <div class="quick-contacts">
+                            <h3>Contactos de Emergencia</h3>
+                            <div class="quick-contacts-grid">
+                                <div class="quick-contact urgent">
+                                    <button class="contact-btn" onclick="callEmergencyLine()">
+                                        <div class="contact-icon">
+                                            <i class="fas fa-ambulance"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                            <h4>911</h4>
+                                            <span>Emergencias</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                
+                                <div class="quick-contact">
+                                    <button class="contact-btn" onclick="callDoctor()">
+                                        <div class="contact-icon">
+                                            <i class="fas fa-user-md"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                            <h4>Dr. García</h4>
+                                            <span>Médico</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                
+                                <div class="quick-contact">
+                                    <button class="contact-btn" onclick="callEmergencyContact()">
+                                        <div class="contact-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                            <h4>María</h4>
+                                            <span>Contacto</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                
+                                <div class="quick-contact">
+                                    <button class="contact-btn" onclick="callCrisisLine()">
+                                        <div class="contact-icon">
+                                            <i class="fas fa-phone-volume"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                            <h4>Crisis</h4>
+                                            <span>Línea de apoyo</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Configuración de Alertas -->
+                        <div class="alert-settings">
+                            <h3>Configuración de Alertas</h3>
+                            <div class="settings-categories">
+                                <div class="category-card">
+                                    <div class="category-header">
+                                        <h4><i class="fas fa-pills"></i> Medicamentos</h4>
+                                        <div class="category-toggle">
+                                            <input type="checkbox" id="med-alerts" checked>
+                                            <label for="med-alerts" class="toggle-switch"></label>
+                                        </div>
+                                    </div>
+                                    <div class="category-options">
+                                        <div class="option">
+                                            <label>Recordatorio anticipado:</label>
+                                            <select>
+                                                <option value="15">15 minutos</option>
+                                                <option value="30" selected>30 minutos</option>
+                                                <option value="60">1 hora</option>
+                                            </select>
+                                        </div>
+                                        <div class="option">
+                                            <label>Repetir cada:</label>
+                                            <select>
+                                                <option value="15" selected>15 minutos</option>
+                                                <option value="30">30 minutos</option>
+                                                <option value="60">1 hora</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="category-card">
+                                    <div class="category-header">
+                                        <h4><i class="fas fa-calendar"></i> Citas Médicas</h4>
+                                        <div class="category-toggle">
+                                            <input type="checkbox" id="appointment-alerts" checked>
+                                            <label for="appointment-alerts" class="toggle-switch"></label>
+                                        </div>
+                                    </div>
+                                    <div class="category-options">
+                                        <div class="option">
+                                            <label>Recordatorio:</label>
+                                            <select>
+                                                <option value="1440">1 día antes</option>
+                                                <option value="720" selected>12 horas antes</option>
+                                                <option value="120">2 horas antes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="category-card">
+                                    <div class="category-header">
+                                        <h4><i class="fas fa-map-marker-alt"></i> Ubicación</h4>
+                                        <div class="category-toggle">
+                                            <input type="checkbox" id="location-alerts" checked>
+                                            <label for="location-alerts" class="toggle-switch"></label>
+                                        </div>
+                                    </div>
+                                    <div class="category-options">
+                                        <div class="option">
+                                            <label>Compartir ubicación en emergencia:</label>
+                                            <input type="checkbox" checked>
+                                        </div>
+                                        <div class="option">
+                                            <label>Alertas de zona segura:</label>
+                                            <input type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Historial de Alertas -->
+                        <div class="alert-history">
+                            <h3>Historial de Alertas</h3>
+                            <div class="history-list">
+                                <div class="history-item resolved">
+                                    <div class="history-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="history-content">
+                                        <h4>Medicamento tomado</h4>
+                                        <p>Anticonceptivo oral - Confirmado</p>
+                                        <span class="history-time">Hace 3 horas</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="history-item resolved">
+                                    <div class="history-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="history-content">
+                                        <h4>Cita confirmada</h4>
+                                        <p>Control ginecológico - Dr. Ana García</p>
+                                        <span class="history-time">Ayer</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="history-item missed">
+                                    <div class="history-icon">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div class="history-content">
+                                        <h4>Medicamento omitido</h4>
+                                        <p>Vitamina D - No confirmado</p>
+                                        <span class="history-time">Hace 2 días</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal de confirmación para cerrar sesión -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Cerrar Sesión</h3>
+                <span class="close-modal" onclick="closeModal('logoutModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás segura de que deseas cerrar sesión?</p>
+                <p class="logout-warning">Se perderán los datos no guardados.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal('logoutModal')">Cancelar</button>
+                <button class="confirm-btn" onclick="confirmLogout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts JavaScript -->
+    <script src="../js/main-app.js"></script>
+    <script src="../js/modules.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

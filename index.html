@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WarniVida - Plataforma de Salud Reproductiva</title>
+    
+    <!-- Fuentes de Google Fonts para un diseño elegante y femenino -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos de Font Awesome para elementos visuales atractivos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos principales del dashboard -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- Meta tags para SEO y descripción del proyecto -->
+    <meta name="description" content="WarniVida - Plataforma integral de salud reproductiva para mujeres con comorbilidades. Desarrollado por Antony Salcedo para Eliana Narvaez Diaz - 2025">
+    <meta name="author" content="Antony Salcedo">
+    <meta name="keywords" content="salud reproductiva, planificación familiar, mujeres, comorbilidades, diabetes, hipertensión">
+</head>
+<body>
+    <!-- Contenedor principal del dashboard con diseño responsivo -->
+    <div class="dashboard-container">
+        
+        <!-- Header principal con branding y navegación -->
+        <header class="main-header">
+            <div class="header-content">
+                <!-- Logo y título principal con tipografía elegante -->
+                <div class="brand-section">
+                    <div class="logo-container">
+                        <i class="fas fa-heart-pulse logo-icon"></i>
+                        <h1 class="brand-title">WarniVida</h1>
+                    </div>
+                    <p class="brand-subtitle">Tu salud reproductiva en buenas manos</p>
+                </div>
+                
+                <!-- Información del proyecto y créditos -->
+                <div class="project-info">
+                    <p class="project-credits">
+                        <span class="author-label">Autora:</span> Eliana Narvaez Diaz<br>
+                        <span class="developer-label">Desarrollador:</span> Antony Salcedo<br>
+                        <span class="year-label">© 2025</span>
+                    </p>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Sección principal de bienvenida con call-to-action -->
+        <main class="welcome-section">
+            <div class="welcome-content">
+                <!-- Mensaje de bienvenida personalizado -->
+                <div class="welcome-text">
+                    <h2 class="welcome-title">Bienvenida a tu espacio de bienestar</h2>
+                    <p class="welcome-description">
+                        Una plataforma diseñada especialmente para acompañarte en tu cuidado de salud reproductiva, 
+                        brindándote información personalizada, seguimiento médico y apoyo integral.
+                    </p>
+                    <div class="features-highlight">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-heart"></i>
+                            <span>Cuidado personalizado</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Seguimiento continuo</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-user-md"></i>
+                            <span>Apoyo profesional</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Opciones principales de acceso -->
+                <div class="access-options">
+                    <!-- Botón para iniciar sesión -->
+                    <div class="option-card login-card">
+                        <div class="card-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h3 class="card-title">Iniciar Sesión</h3>
+                        <p class="card-description">Accede a tu cuenta personal y continúa con tu seguimiento médico</p>
+                        <button class="action-btn login-btn" onclick="showLoginForm()">
+                            <span>Ingresar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Botón para registro de nueva usuaria -->
+                    <div class="option-card register-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="card-title">Registrarse</h3>
+                        <p class="card-description">Crea tu perfil y comienza tu experiencia personalizada de cuidado</p>
+                        <button class="action-btn register-btn" onclick="showRegisterForm()">
+                            <span>Crear cuenta</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Botón para experiencia de invitada -->
+                    <div class="option-card guest-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="card-title">Explorar</h3>
+                        <p class="card-description">Conoce nuestros servicios y recursos educativos sin registrarte</p>
+                        <button class="action-btn guest-btn" onclick="startGuestExperience()">
+                            <span>Comenzar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer con información adicional -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Información de Contacto</h4>
+                    <p><i class="fas fa-phone"></i> Línea de atención: 01-8000-WARNIVIDA</p>
+                    <p><i class="fas fa-envelope"></i> soporte@warnivida.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Privacidad y Seguridad</h4>
+                    <p>Tus datos están protegidos conforme a la Ley de Habeas Data en Colombia</p>
+                    <p>Información confidencial y uso exclusivo para atención en salud</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Modal para formulario de inicio de sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Iniciar Sesión</h3>
+                <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Correo electrónico</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Ingresar</button>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para formulario de registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Crear Cuenta</h3>
+                <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="registerName">Nombre completo</label>
+                    <input type="text" id="registerName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Correo electrónico</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Crear cuenta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Scripts JavaScript para funcionalidad interactiva -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

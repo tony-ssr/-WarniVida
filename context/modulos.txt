@@ -1,0 +1,175 @@
+1️⃣ Módulo de Registro y Perfil de Usuaria
+
+Contenido a poner:
+
+Formulario de datos personales (Nombre completo, Documento, Edad, Dirección, Teléfono).
+
+EPS a la que pertenece (lista desplegable).
+
+Selección de comorbilidad:
+
+Hipertensión arterial.
+
+Diabetes mellitus.
+
+Obesidad.
+
+Enfermedad cardiovascular.
+
+Otras (campo de texto libre).
+
+Estado en planificación:
+
+“Actualmente uso un método anticonceptivo”.
+
+“No uso, pero quiero recibir información”.
+
+“No deseo planificar por el momento”.
+
+👉 Aquí pones un botón de guardar datos → la información pasa al hospital/EPS.
+
+2️⃣ Módulo de Educación en Salud
+
+Contenido a poner (ejemplo de secciones y texto):
+
+Sección 1: Métodos anticonceptivos y seguridad en comorbilidades
+
+Explicación breve de cada método (condón, DIU, implante, inyección, pastilla).
+
+Indicaciones sobre cuáles son más seguros para hipertensas, diabéticas, obesas.
+
+Ejemplo de texto:
+
+“Si tienes hipertensión, evita anticonceptivos con alto contenido hormonal sin supervisión médica. El DIU y el implante son opciones más seguras.”
+
+Sección 2: Riesgos de embarazos no planeados
+
+Texto corto:
+
+“Un embarazo en mujeres con diabetes no controlada aumenta el riesgo de complicaciones graves para la madre y el bebé. La planificación te protege a ti y a tu familia.”
+
+Sección 3: Autocuidado según tu condición
+
+Hipertensas: control de presión arterial y dieta baja en sal.
+
+Diabéticas: control glucémico, dieta saludable.
+
+Obesidad: actividad física adaptada.
+
+Material interactivo:
+
+Infografías ilustradas.
+
+Videos de máximo 2 minutos.
+
+Botón de “Preguntas frecuentes”.
+
+3️⃣ Módulo de Consejería y Captación
+
+Contenido a poner:
+
+Botón “Agendar cita” con calendario.
+
+Texto de bienvenida:
+
+“Agenda tu cita de consejería en planificación familiar. Puede ser presencial en el hospital o virtual con un profesional de salud.”
+
+Chat básico o buzón de preguntas (la paciente escribe dudas → enfermería responde en la plataforma).
+
+Formulario de consentimiento informado digital:
+
+“Acepto recibir consejería en planificación.”
+
+“Acepto el método anticonceptivo elegido con acompañamiento médico.”
+
+4️⃣ Módulo de Planificación y Recordatorios
+
+Contenido a poner:
+
+Calendario con citas y recordatorios automáticos.
+
+Alertas:
+
+“Mañana tienes tu cita de planificación.”
+
+“Hoy es el día de tu inyección anticonceptiva.”
+
+Botón para que la paciente marque:
+
+✅ “Tomé mi pastilla.”
+
+❌ “Olvidé mi pastilla.”
+
+Botón de signos de alarma:
+
+Texto: “Selecciona si presentas alguno de estos síntomas”
+
+Dolor torácico.
+
+Mareo intenso.
+
+Sangrado abundante.
+
+Dificultad para respirar.
+
+Al marcar, se envía alerta inmediata al hospital.
+
+5️⃣ Módulo de Seguimiento Personalizado
+
+Contenido a poner:
+
+Línea de tiempo de la paciente:
+
+“12/09/2025: Consejería inicial.”
+
+“13/09/2025: Inicio de DIU.”
+
+Gráfico sencillo:
+
+“Has cumplido con el 80% de tus recordatorios este mes.”
+
+Historial de síntomas reportados (ejemplo: “Reportó mareo el 10/09/2025”).
+
+6️⃣ Módulo de Comunicación
+
+Contenido a poner:
+
+Chat con enfermería (horarios disponibles).
+
+Preguntas frecuentes (ejemplo):
+
+¿Qué pasa si olvido la pastilla?
+
+¿El implante engorda?
+
+¿Qué métodos son seguros si tengo diabetes?
+
+Chatbot de orientación básica con respuestas automáticas.
+
+7️⃣ Módulo de Reportes Automáticos (interno)
+
+Contenido a configurar (invisible a la paciente, automático):
+
+Datos que se envían al hospital/EPS:
+
+Número de usuarias registradas.
+
+Mujeres con comorbilidades captadas.
+
+Métodos elegidos.
+
+Adherencia al tratamiento.
+
+Alertas reportadas.
+
+Reporte mensual en PDF/Excel automático a la EPS.
+
+8️⃣ Módulo de Seguridad y Privacidad
+
+Contenido a poner:
+
+Texto visible para la paciente al registrarse:
+
+“Tus datos serán confidenciales, protegidos y usados solo para tu atención en salud, conforme a la Ley de Habeas Data en Colombia.”
+
+Login con contraseña o huella digital.
